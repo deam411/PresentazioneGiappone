@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giappone - Terra del Sol Levante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f0f;
+            color: #333;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+            /* Aggiunto per transizioni più fluide */
+        }
+
+        /* --- Fullscreen Styles --- */
+        body.fullscreen-mode {
+            background-color: #0f0f0f;
+            /* Assicura uno sfondo nero quando in fullscreen */
+        }
+
+        /* Nascondi scrollbar in fullscreen */
+        body.fullscreen-mode::-webkit-scrollbar {
+            display: none;
+        }
+
+        body.fullscreen-mode {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        /* ************************************** */
+        /* MODIFICHE PER FULLSCREEN - AUMENTO DIMENSIONI */
+        /* ************************************** */
+        body.fullscreen-mode p,
+        body.fullscreen-mode .column-text p {
+            font-size: 1.35em;
+            /* Aumenta il testo del corpo */
+        }
+
+        body.fullscreen-mode .gallery-caption {
+            font-size: 1.4em;
+            /* Aumenta le didascalie delle griglie */
+        }
+
+        body.fullscreen-mode h2 {
+            font-size: 4em;
+            /* Aumenta leggermente i titoli di sezione */
+        }
+
+        /* ************************************** */
+
+
+        /* ------------------------- */
+
+        /* Header */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                /* Reale: Tokyo Neon (Originale) */
+                url('https://images.unsplash.com/photo-1542640244-7e672d6cef4e?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            /* Performance OK (non più fixed) */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 6em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+            animation: fadeInDown 1s ease;
+            letter-spacing: 10px;
+        }
+
+        header p {
+            font-size: 2em;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 1s ease 0.3s both;
+            letter-spacing: 3px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        body.fullscreen-mode nav {
+            /* Nascondi la barra di navigazione in modalità fullscreen per non distrarre */
+            transform: translateY(-100%);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 20px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: #c41e3a;
+            transform: translateY(-2px);
+        }
+
+        /* Full Width Image Sections */
+        .image-section {
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            /* Performance OK (non più fixed) */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .image-caption {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-size: 3em;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 100px 50px;
+            background: white;
+        }
+
+        .content-section.dark {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 3.5em;
+            color: #c41e3a;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .dark h2 {
+            color: #ff4757;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #c41e3a, transparent);
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            /* Indica che l'elemento è cliccabile */
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 30px;
+            color: white;
+        }
+
+        .grid-overlay h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .grid-overlay p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .stat-label {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .stat-description {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin: 50px 0;
+        }
+
+        .column-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            /* Indica che l'elemento è cliccabile */
+        }
+
+        .column-text h3 {
+            font-size: 2.5em;
+            color: #c41e3a;
+            margin-bottom: 20px;
+        }
+
+        .dark .column-text h3 {
+            color: #ff4757;
+        }
+
+        .column-text p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Gallery Section */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 50px 0;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 300px;
+            cursor: pointer;
+            /* Indica che l'elemento è cliccabile */
+        }
+
+        /* ************************************** */
+        /* CORREZIONE CSS PER INQUADRATURA IMMAGINI GALLERY */
+        /* ************************************** */
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            /* Assicura che l'immagine sia centrata */
+            transition: transform 0.3s ease;
+        }
+
+        /* ************************************** */
+
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        /* Stile specifico per i box senza immagine di sfondo */
+        .gallery-item.no-img {
+            background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+            color: white;
+            padding: 20px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: default;
+            animation: none !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-item.no-img .gallery-caption {
+            position: relative;
+            background: none;
+            color: white;
+            padding: 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .gallery-item.no-img img {
+            display: none;
+            /* Nasconde l'elemento immagine in questi box */
+        }
+
+        /* Large Image with Text Overlay */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            /* Performance OK (non più fixed) */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 40px;
+        }
+
+        .hero-content h2 {
+            font-size: 4em;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .hero-content h2::after {
+            background: linear-gradient(90deg, transparent, white, transparent);
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        footer p {
+            font-size: 1.2em;
+            letter-spacing: 1px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ************************************** */
+        /* CSS MODALE FULLSCREEN PER IMMAGINI */
+        /* AGGIORNATO: Aumento dimensione e rimozione didascalia */
+        /* ************************************** */
+        #fullscreen-modal {
+            display: none;
+            position: fixed;
+            z-index: 10002;
+            padding-top: 20px;
+            /* Ridotto il padding dall'alto */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s;
+        }
+
+        #fullscreen-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            /* Aumentata la larghezza massima per essere più grande */
+            max-width: 1200px;
+            /* Aumentata la larghezza massima */
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+            animation: zoomIn 0.3s;
+        }
+
+        #caption {
+            display: none;
+            /* NASCONDI LA DIDASCALIA COME RICHIESTO */
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* ************************************** */
+
+
+        /* Stile per il pulsante Fullscreen */
+        #fullscreen-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10000;
+            /* Assicura che sia sopra tutto */
+            background-color: #c41e3a;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #fullscreen-btn:hover {
+            background-color: #a01830;
+            transform: scale(1.05);
+        }
+
+        /* Stile per il messaggio di avviso per l'errore Fullscreen */
+        #fullscreen-warning {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffc107;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 10001;
+            display: none;
+        }
+
+        /* ************************************** */
+        /* OTTIMIZZAZIONE CARICAMENTO IMMAGINI */
+        /* ************************************** */
+
+        /* Contenitore immagini con placeholder */
+        .gallery-modal-item,
+        .grid-item:not(.no-img),
+        .gallery-item:not(.no-img) {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%);
+            background-size: 200% 200%;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        /* Box testuali (Curiosità) - stile semplice senza animazione */
+        .gallery-item.no-img {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            animation: none;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Immagini: stato caricamento */
+        .gallery-modal-item img,
+        .grid-item img,
+        .gallery-item img,
+        .two-column .column-image {
+            opacity: 0;
+            filter: blur(10px);
+            transition: opacity 0.5s ease-out, filter 0.5s ease-out;
+            will-change: opacity, filter;
+            object-fit: cover;
+        }
+
+        /* Immagini caricate */
+        .gallery-modal-item img.loaded,
+        .grid-item img.loaded,
+        .gallery-item img.loaded,
+        .two-column .column-image.loaded {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        /* Indicatore di caricamento */
+        .img-loading::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0 -20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #c41e3a;
+            border-radius: 50%;
+            animation: spinner 0.8s linear infinite;
+        }
+
+        @keyframes spinner {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Preload immagini critiche */
+        .image-section,
+        .hero-section,
+        header {
+            background-color: #1a1a2e;
+        }
+
+        /* ************************************** */
+        /* GALLERY MODAL - PAGINE DETTAGLIO */
+        /* ************************************** */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 20000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            backdrop-filter: blur(15px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-bottom: 2px solid #c41e3a;
+        }
+
+        .gallery-modal-title {
+            color: white;
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .gallery-modal-title span {
+            color: #c41e3a;
+        }
+
+        .gallery-modal-close {
+            background: none;
+            border: 2px solid #c41e3a;
+            color: white;
+            font-size: 1.2em;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-modal-close:hover {
+            background: #c41e3a;
+            transform: scale(1.05);
+        }
+
+        .gallery-modal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+        }
+
+        .gallery-modal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-modal-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-modal-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(196, 30, 58, 0.3);
+        }
+
+        .gallery-modal-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-modal-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-modal-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+            padding: 25px;
+            color: white;
+        }
+
+        .gallery-modal-item-overlay h4 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            color: #ff6b81;
+        }
+
+        .gallery-modal-item-overlay p {
+            font-size: 1em;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Indicatore "Clicca per dettagli" sulle card principali */
+        .has-details {
+            position: relative;
+        }
+
+        .has-details::after {
+            content: 'Clicca per dettagli';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #c41e3a, #ff6b81);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .has-details:hover::after {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        /* Miglioramento estetico generale */
+        .grid-item.has-details {
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .grid-item.has-details:hover {
+            border-color: #c41e3a;
+            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.4);
+        }
+
+        /* Responsive per gallery modal */
+        @media (max-width: 768px) {
+            .gallery-modal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-modal-title {
+                font-size: 1.5em;
+            }
+
+            .gallery-modal-header {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#popolazione">Popolazione</a></li>
+            <li><a href="#demografia">Demografia</a></li>
+            <li><a href="#geografia">Geografia</a></li>
+            <li><a href="#citta">Città</a></li>
+            <li><a href="#cultura">Cultura</a></li>
+            <li><a href="#tecnologia">Tecnologia</a></li>
+            <li><a href="#curiosita">Curiosità</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <h1>GIAPPONE</h1>
+        <p>Terra del Sol Levante</p>
+    </header>
+
+    <!-- 1. POPOLAZIONE (Statistiche Iniziali) -->
+    <section id="popolazione" class="content-section">
+        <div class="container">
+            <h2>Popolazione e Dati Fondamentali</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-label">Abitanti</div>
+                    <div class="stat-number">123M</div>
+                    <div class="stat-description">10° paese più popoloso</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Densità</div>
+                    <div class="stat-number">334</div>
+                    <div class="stat-description">abitanti per km²</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Aspettativa di vita</div>
+                    <div class="stat-number">84+</div>
+                    <div class="stat-description">anni</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Isole</div>
+                    <div class="stat-number">6.852</div>
+                    <div class="stat-description">che compongono l'arcipelago</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. DEMOGRAFIA (Invecchiamento) -->
+    <section id="demografia" class="content-section dark">
+        <div class="container">
+            <h2>Sfide Demografiche</h2>
+            <div class="two-column">
+                <!-- Immagine resa cliccabile per zoom -->
+                <img src="https://www.s-ge.com/sites/default/files/publication/images/agetech.png"
+                    alt="Popolazione giapponese anziana" class="column-image img-zoomable" loading="lazy">
+                <div class="column-text">
+                    <h3>Una società che invecchia rapidamente</h3>
+                    <p>Il Giappone affronta una delle più rapide transizioni demografiche al mondo.</p>
+                    <p>La popolazione ha raggiunto il picco nel 2008 e da allora è in costante declino.</p>
+                    <p>Oltre il 29% della popolazione ha più di 65 anni, la percentuale più alta al mondo.</p>
+                </div>
+            </div>
+            <div class="two-column">
+                <div class="column-text">
+                    <h3>Il futuro demografico</h3>
+                    <p>Il tasso di natalità è sceso a 1.3 figli per donna, ben al di sotto del tasso di sostituzione.
+                    </p>
+                    <p>Si prevede che la popolazione scenderà a 88 milioni entro il 2065.</p>
+                </div>
+                <!-- Immagine resa cliccabile per zoom -->
+                <img src="https://www.futuroprossimo.it/wp-content/uploads/2023/07/Japan_Population_by_Age_1920-2010_with_Projection_to_2060.png"
+                    alt="Grafico proiezione demografica Giappone" class="column-image img-zoomable" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Immagine di transizione: Contrasti del Giappone -->
+    <div class="image-section"
+        style="background-image: url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1600&q=80');">
+        <div class="image-caption">Un Paese di Contrasti Affascinanti</div>
+    </div>
+
+    <!-- 3. GEOGRAFIA E NATURA -->
+    <section id="geografia" class="content-section">
+        <div class="container">
+            <h2>Geografia e Ambiente</h2>
+            <div class="image-grid">
+                <div class="grid-item">
+                    <!-- Reso cliccabile per zoom: Territorio Montuoso -->
+                    <img src="https://volcanohub.com/wp-content/uploads/2021/06/hokkaido-1024x683.jpg"
+                        alt="Montagne innevate Hokkaido" class="img-zoomable" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Territorio Montuoso</h3>
+                        <p>Il 73% del territorio è coperto da montagne</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <!-- Reso cliccabile per zoom: Anello di Fuoco -->
+                    <img src="https://i0.wp.com/www.italiachiamaitalia.it/wp-content/uploads/2019/01/eruzione-zamp.jpg?fit=1067%2C600&ssl=1"
+                        alt="Eruzione vulcanica" class="img-zoomable" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Anello di Fuoco</h3>
+                        <p>110 vulcani attivi nell'arcipelago, ad alto rischio sismico</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <!-- Reso cliccabile per zoom: Foreste e Coste -->
+                    <img src="https://images.lonelyplanetitalia.it/uploads/KgPi7fuM09rPXoLRe073oAdBGWnhcCOJ.jpg?q=80&p=slider&s=06b9ca16309dc3ae33a020b7b3cb72c3"
+                        alt="Foreste e Coste" class="img-zoomable" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Foreste e Coste</h3>
+                        <p>Il 67% del territorio è coperto da foreste, con coste frastagliate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immagine di transizione: Tradizione e Modernità -->
+    <div class="hero-section"
+        style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1600&q=80');">
+        <div class="hero-content">
+            <h2>Tradizione e Modernità</h2>
+            <p>Il Giappone è l'unico paese al mondo dove puoi vedere un tempio di 1000 anni accanto a un grattacielo
+                futuristico, dove la tecnologia più avanzata convive con rituali millenari.</p>
+        </div>
+    </div>
+
+    <!-- 4. CITTÀ PRINCIPALI -->
+    <section id="citta" class="content-section dark">
+        <div class="container">
+            <h2>Le Grandi Metropoli</h2>
+            <div class="image-grid">
+                <div class="grid-item has-details" data-modal="tokyo-modal">
+                    <!-- Clicca per aprire gallery Tokyo -->
+                    <img src="https://www.advantour.com/img/japan/images/tokyo.jpg" alt="Tokyo skyline moderna"
+                        loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Tokyo</h3>
+                        <p>14 milioni di abitanti - La capitale ultra-moderna</p>
+                    </div>
+                </div>
+                <div class="grid-item has-details" data-modal="kyoto-modal">
+                    <!-- Clicca per aprire gallery Kyoto -->
+                    <img src="https://static2-viaggi.corriereobjects.it/wp-content/uploads/2023/12/kyoto-iStock-458256345-min.jpg?v=1704217031"
+                        alt="Pagoda di Kyoto al tramonto" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Kyoto</h3>
+                        <p>1.5 milioni - L'antica capitale imperiale e cuore culturale</p>
+                    </div>
+                </div>
+                <div class="grid-item has-details" data-modal="osaka-modal">
+                    <!-- Clicca per aprire gallery Osaka -->
+                    <img src="https://www.sognandoilgiappone.com/wp-content/uploads/2023/01/shinsekai-osaka-scaled.jpeg"
+                        alt="Quartiere Shinsekai di Osaka" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Osaka</h3>
+                        <p>2.7 milioni - "La cucina del Giappone" e centro commerciale</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <!-- Reso cliccabile per zoom: Yokohama -->
+                    <img src="https://static.wixstatic.com/media/nsplsh_c2d531378b3043d9b0c1b5e78bb47cfd~mv2.jpg/v1/fill/w_568,h_378,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/nsplsh_c2d531378b3043d9b0c1b5e78bb47cfd~mv2.jpg"
+                        alt="Yokohama Minato Mirai" class="img-zoomable" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Yokohama</h3>
+                        <p>3.7 milioni - Il porto principale e Chinatow</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <!-- Reale: Nagoya -->
+                    <img src="https://www.marcotogni.it/v-2/36/cosa-vedere-nagoya.jpg" alt="Nagoya Castle"
+                        class="img-zoomable" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Nagoya</h3>
+                        <p>2.3 milioni - Centro industriale e della produzione automobilistica</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <!-- Reale: Sapporo -->
+                    <img src="https://www.marcotogni.it/v-2/36/cosa-vedere-sapporo.jpg" alt="Sapporo Clock Tower"
+                        class="img-zoomable" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Sapporo</h3>
+                        <p>1.9 milioni - Capitale di Hokkaido, famosa per la birra e la neve</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CULTURA E TRADIZIONE -->
+    <section id="cultura" class="content-section">
+        <div class="container">
+            <h2>Cultura e Tradizione</h2>
+            <div class="photo-gallery">
+                <div class="gallery-item">
+                    <!-- Reso cliccabile per zoom: Templi e Santuari -->
+                    <img src="https://cdn.shopify.com/s/files/1/0515/1073/9106/files/templio-buddhista.jpg?v=1625223143"
+                        alt="Tempio Buddista Giapponese" class="img-zoomable" loading="lazy">
+                    <div class="gallery-caption">Templi e Santuari</div>
+                </div>
+                <div class="gallery-item">
+                    <!-- Reso cliccabile per zoom: Giardini Zen -->
+                    <img src="https://www.lagattasultettomilano.com/wp-content/uploads/2018/09/Giardino-giapponese-come-realizzarlo-a-casa-tua.jpg"
+                        alt="Giardino Zen Tradizionale" class="img-zoomable" loading="lazy">
+                    <div class="gallery-caption">Giardini Zen</div>
+                </div>
+                <div class="gallery-item">
+                    <!-- Reso cliccabile per zoom: Teatro Kabuki e Nō -->
+                    <img src="https://youinjapan.net/arts/pics/theater-noh.jpg" alt="Attore di teatro Nō in costume"
+                        class="img-zoomable" loading="lazy">
+                    <div class="gallery-caption">Teatro Kabuki e Nō</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immagine di transizione: Gastronomia -->
+    <div class="hero-section"
+        style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.watabi.it/blog/wp-content/uploads/2020/06/piatti-giapponesi-copertina.jpg');">
+        <div class="hero-content">
+            <h2>Gastronomia: Patrimonio UNESCO</h2>
+            <p>La cucina giapponese (Washoku) è patrimonio UNESCO. Dal sushi al ramen, dalla tempura ai wagashi, ogni
+                piatto è un'opera d'arte che celebra ingredienti di stagione e tecniche millenarie.</p>
+        </div>
+    </div>
+
+    <!-- 6. TECNOLOGIA E INNOVAZIONE -->
+    <section id="tecnologia" class="content-section dark">
+        <div class="container">
+            <h2>Tecnologia e Innovazione</h2>
+            <div class="image-grid">
+                <div class="grid-item has-details" data-modal="tech-modal">
+                    <!-- Clicca per aprire gallery Tecnologia -->
+                    <img src="https://www.startmag.it/wp-content/uploads/japan759.jpg"
+                        alt="Robot in un impianto di produzione" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Leader nella Robotica</h3>
+                        <p>Il più alto numero di robot per capita al mondo, per automazione e assistenza</p>
+                    </div>
+                </div>
+                <div class="grid-item has-details" data-modal="tech-modal">
+                    <!-- Clicca per aprire gallery Tecnologia -->
+                    <img src="https://media-assets.wired.it/photos/628773996fad335d8dfd4758/16:9/w_4240,h_2385,c_limit/GettyImages-1239412203.jpg"
+                        alt="Treni proiettile Shinkansen" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Shinkansen - Treno Proiettile</h3>
+                        <p>320 km/h, zero incidenti mortali in 60 anni di servizio</p>
+                    </div>
+                </div>
+                <div class="grid-item has-details" data-modal="tech-modal">
+                    <!-- Clicca per aprire gallery Tecnologia -->
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
+                        alt="Gaming e Videogiochi" loading="lazy">
+                    <div class="grid-overlay">
+                        <h3>Industria Videoludica</h3>
+                        <p>Casa di Nintendo, PlayStation, Sony e molti dei franchise più amati</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 7. CURIOSITÀ (Finale) -->
+    <section id="curiosita" class="content-section">
+        <div class="container">
+            <h2>Curiosità e Record</h2>
+            <div class="photo-gallery">
+                <div class="gallery-item no-img">
+                    <div class="gallery-caption">Capsule Hotels: Stanze grandi quanto una bara, perfette per dormire!
+                    </div>
+                </div>
+                <div class="gallery-item no-img">
+                    <div class="gallery-caption">Treni così puntuali che 1 minuto di ritardo richiede scuse ufficiali
+                    </div>
+                </div>
+                <div class="gallery-item no-img">
+                    <div class="gallery-caption">Tashirojima: L'isola dove i gatti superano gli abitanti umani 6 a 1
+                    </div>
+                </div>
+                <div class="gallery-item no-img">
+                    <div class="gallery-caption">Distributori automatici vendono di tutto: uova, cravatte, anche
+                        insetti!</div>
+                </div>
+                <div class="gallery-item no-img">
+                    <div class="gallery-caption">Bagni con 30+ pulsanti: musica, bidet, sedile riscaldato, profumo
+                    </div>
+                </div>
+                <div class="gallery-item no-img">
+                    <div class="gallery-caption">"Inemuri": Dormire al lavoro è segno di dedizione, non pigrizia!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immagine di transizione: Finale -->
+    <div class="image-section"
+        style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80');">
+        <div class="image-caption">Un paese dove passato e futuro convivono in armonia</div>
+    </div>
+
+    <footer>
+        <p>Giappone - Un viaggio straordinario tra cultura, tecnologia e tradizione</p>
+    </footer>
+
+    <!-- ====================================== -->
+    <!-- GALLERY MODALI - PAGINE DETTAGLIO -->
+    <!-- ====================================== -->
+
+    <!-- MODAL TOKYO -->
+    <div id="tokyo-modal" class="gallery-modal">
+        <div class="gallery-modal-header">
+            <h3 class="gallery-modal-title"><span>Tokyo</span> - La Metropoli del Futuro</h3>
+            <button class="gallery-modal-close" onclick="closeGalleryModal('tokyo-modal', event)">✕ Chiudi</button>
+        </div>
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-grid">
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&q=80"
+                        alt="Shibuya Crossing" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Shibuya Crossing</h4>
+                        <p>L'incrocio più trafficato del mondo: 3.000 persone attraversano ogni semaforo verde!</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=800&q=80" alt="Tokyo Tower"
+                        loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Tokyo Tower</h4>
+                        <p>333 metri di altezza, ispirata alla Torre Eiffel ma dipinta di rosso e bianco</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://images.photowall.com/products/73467/japan-rising-sun-senso-ji-temple.jpg?h=699&q=85"
+                        alt="Senso-ji Temple" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Tempio Senso-ji</h4>
+                        <p>Famosa lanterna rossa gigante all'ingresso del tempio di Asakusa</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://wallpapers.com/images/hd/japanese-neon-ktt5e6dte76cinqa.jpg" alt="Tokyo Neon"
+                        loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Luci al Neon</h4>
+                        <p>Insegne luminose colorate illuminano le strade di Shinjuku</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80"
+                        alt="Tokyo Skyline" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Tokyo Skyline</h4>
+                        <p>Vista panoramica con Tokyo Tower - grattacieli a perdita d'occhio</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://mywowo.net/media/images/cache/tokyo_08_santuario_meiji_jpg_1200_630_cover_85.jpg"
+                        alt="Meiji Shrine" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Santuario Meiji</h4>
+                        <p>Grande torii in legno di cipresso all'ingresso del santuario</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL KYOTO -->
+    <div id="kyoto-modal" class="gallery-modal">
+        <div class="gallery-modal-header">
+            <h3 class="gallery-modal-title"><span>Kyoto</span> - L'Anima Tradizionale</h3>
+            <button class="gallery-modal-close" onclick="closeGalleryModal('kyoto-modal', event)">✕ Chiudi</button>
+        </div>
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-grid">
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1558862107-d49ef2a04d72?w=800&q=80" alt="Fushimi Inari"
+                        loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Fushimi Inari Taisha</h4>
+                        <p>Tunnel di torii rosso vermiglio che sale sulla montagna sacra</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1503640538573-148065ba4904?w=800&q=80" alt="Kinkaku-ji"
+                        loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Kinkaku-ji (Padiglione d'Oro)</h4>
+                        <p>Il tempio interamente ricoperto d'oro riflesso nel laghetto</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://matteoingiappone.s3.eu-central-1.amazonaws.com/wp-content/uploads/2021/01/Foresta-di-bambu-ad-Arashiyama-2-e1609934772304.jpg"
+                        alt="Foresta di Bambù" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Foresta di Bambù di Arashiyama</h4>
+                        <p>Sentiero immerso tra altissime canne di bambù verde</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://www.japan-experience.com/sites/default/files/styles/scale_crop_760x556/public/legacy/japan_experience/1594821251836.jpg.webp?itok=6cqMysWT"
+                        alt="Gion" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Quartiere Gion</h4>
+                        <p>Strade tradizionali con lanterne e case in legno delle geishe</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQywstbmB-lntN9EEXpBWqFw4Sp_M77TqYxXQ&s"
+                        alt="Giardino Zen" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Giardino Zen Ryoan-ji</h4>
+                        <p>Rocce su ghiaia bianca rastrellata - simbolo della meditazione zen</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDuNQT72UhMqsKa5rbyLtLEoehGx5c95U42w&s"
+                        alt="Tempio Kiyomizu" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Tempio Kiyomizu-dera</h4>
+                        <p>Piattaforma in legno sospesa sulla collina con vista mozzafiato</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL OSAKA -->
+    <div id="osaka-modal" class="gallery-modal">
+        <div class="gallery-modal-header">
+            <h3 class="gallery-modal-title"><span>Osaka</span> - La Cucina del Giappone</h3>
+            <button class="gallery-modal-close" onclick="closeGalleryModal('osaka-modal', event)">✕ Chiudi</button>
+        </div>
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-grid">
+                <div class="gallery-modal-item">
+                    <img src="https://cdn.gaijinpot.com/app/uploads/sites/4/2014/04/dotonburi.jpg" alt="Dotonbori"
+                        loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Dotonbori</h4>
+                        <p>Canale con le famose insegne luminose e il Glico Man</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://static.ilviaggiochetimanca.com/media/56867b23bfd31a8dabfc600a906acf45f26fab0f-960x540.webp?1743566626654"
+                        alt="Osaka Castle" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Castello di Osaka</h4>
+                        <p>Imponente castello con tetto verde circondato da un ampio fossato</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=800&q=80" alt="Japanese Food"
+                        loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Street Food</h4>
+                        <p>Takoyaki, ramen e sushi - Osaka è la capitale gastronomica del Giappone</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/490000/490683-shinsekai.jpg"
+                        alt="Shinsekai" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Shinsekai</h4>
+                        <p>Tsutenkaku Tower illuminata - simbolo del quartiere retro</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://matteoingiappone.s3.eu-central-1.amazonaws.com/wp-content/uploads/2020/03/Namba.jpg"
+                        alt="Namba Night" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Quartiere Namba</h4>
+                        <p>Insegne luminose e folla notturna nel quartiere dello shopping</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TECNOLOGIA -->
+    <div id="tech-modal" class="gallery-modal">
+        <div class="gallery-modal-header">
+            <h3 class="gallery-modal-title"><span>Tecnologia</span> - Innovazione Estrema</h3>
+            <button class="gallery-modal-close" onclick="closeGalleryModal('tech-modal', event)">✕ Chiudi</button>
+        </div>
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-grid">
+                <div class="gallery-modal-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0mS_JfequUN_-sXnnim1yNK4Bl9A0BmO3mQ&s"
+                        alt="Shinkansen" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Shinkansen - Treno Proiettile</h4>
+                        <p>Il treno bianco aerodinamico che sfreccia a 320 km/h</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80" alt="Robot ASIMO"
+                        loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Robotica Avanzata</h4>
+                        <p>Il Giappone ha il maggior numero di robot pro capite al mondo</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://cdn.spaziogames.it/storage/wp/new-images/2022/09/rise-of-the-ronin-50323.jpg"
+                        alt="Gaming" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Industria Videogiochi</h4>
+                        <p>Nintendo e PlayStation - icone mondiali nate in Giappone</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80"
+                        alt="Tech Innovation" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Innovazioni Quotidiane</h4>
+                        <p>Walkman, CD, DVD, Blu-ray, Emoji, QR Code, Karaoke - tutti inventati qui!</p>
+                    </div>
+                </div>
+                <div class="gallery-modal-item">
+                    <img src="https://tokyoesque.com/wp-content/uploads/2020/12/2.png" alt="Smart City" loading="lazy">
+                    <div class="gallery-modal-item-overlay">
+                        <h4>Smart Cities</h4>
+                        <p>Tokyo: grattacieli ipermoderni illuminati e tecnologia ovunque</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pulsante Fullscreen -->
+    <button id="fullscreen-btn" title="Schermo intero">
+        <i class="fas fa-expand"></i>
+    </button>
+
+    <!-- Messaggio di avviso per l'errore Fullscreen -->
+    <div id="fullscreen-warning">Funzione schermo intero non disponibile a causa delle restrizioni di sicurezza del
+        browser.</div>
+
+    <!-- MODALE FULLSCREEN IMMAGINE -->
+    <div id="fullscreen-modal" style="display: none;">
+        <span class="close-modal">&times;</span>
+        <img id="fullscreen-content">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations (existing code)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animations to content sections (existing code)
+        document.querySelectorAll('.content-section, .image-section, footer').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = 'opacity 1s ease, transform 1s ease';
+            observer.observe(element);
+        });
+
+        /* --- LOGICA FULLSCREEN --- */
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const fullscreenWarning = document.getElementById('fullscreen-warning');
+        const body = document.body;
+
+        // Funzione per mostrare l'avviso
+        function showWarning() {
+            fullscreenWarning.style.display = 'block';
+            setTimeout(() => {
+                fullscreenWarning.style.display = 'none';
+            }, 5000); // Nasconde dopo 5 secondi
+        }
+
+        // Funzione per richiedere il fullscreen con gestione errori (try...catch)
+        function openFullscreen() {
+            try {
+                // Tentativo di mettere in fullscreen l'elemento radice (document.documentElement)
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                    document.documentElement.msRequestFullscreen();
+                }
+            } catch (error) {
+                console.error("Errore Fullscreen:", error.message);
+                // Se l'errore è dovuto a 'Disallowed by permissions policy', mostra l'avviso
+                if (error.name === 'SecurityError' || error.message.includes('Disallowed by permissions policy')) {
+                    showWarning();
+                }
+            }
+        }
+
+        // Funzione per uscire dal fullscreen
+        function closeFullscreen() {
+            try {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                    document.webkitExitFullscreen();
+                } else if (document.documentElement.msExitFullscreen) { // IE/Edge
+                    document.documentElement.msRequestFullscreen();
+                }
+            } catch (error) {
+                // In questo contesto, l'uscita ha meno probabilità di generare errori di permesso
+                console.error("Errore nell'uscita Fullscreen:", error.message);
+            }
+        }
+
+        // Gestore del click sul pulsante
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.documentElement.msFullscreenElement) {
+                openFullscreen();
+            } else {
+                closeFullscreen();
+            }
+        });
+
+        // Ascolta il cambio di stato del fullscreen per aggiornare il pulsante e gli stili del body
+        document.addEventListener('fullscreenchange', updateFullscreenState);
+        document.addEventListener('mozfullscreenchange', updateFullscreenState);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenState);
+        document.addEventListener('msfullscreenchange', updateFullscreenState);
+
+        function updateFullscreenState() {
+            const isFullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.documentElement.msFullscreenElement;
+
+            if (isFullscreen) {
+                // Modalità fullscreen attivata
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                fullscreenBtn.title = 'Esci dallo schermo intero';
+                body.classList.add('fullscreen-mode');
+            } else {
+                // Modalità fullscreen disattivata
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                fullscreenBtn.title = 'Schermo intero';
+                body.classList.remove('fullscreen-mode');
+            }
+        }
+
+        // **************************************
+        // LOGICA ZOOM IMMAGINE
+        // **************************************
+        const modal = document.getElementById("fullscreen-modal");
+        const modalImg = document.getElementById("fullscreen-content");
+        const captionText = document.getElementById("caption");
+        const closeModal = document.getElementsByClassName("close-modal")[0];
+
+        // Rende le immagini cliccabili. Esclude quelle in .has-details (che aprono modal) e .no-img
+        document.querySelectorAll('.two-column .column-image, .image-grid img, .photo-gallery img').forEach(img => {
+            // Esclude: box testuali in Curiosità E card con "Clicca per dettagli"
+            if (!img.closest('.gallery-item.no-img') && !img.closest('.has-details')) {
+                img.addEventListener('click', function () {
+                    modal.style.display = "flex";
+                    modalImg.src = this.src;
+                    // Nascondiamo la didascalia (caption) come richiesto dall'utente
+                    // captionText.innerHTML = this.alt; 
+                    document.body.style.overflow = 'hidden'; // Blocca lo scroll del body
+                });
+            }
+        });
+
+        // Chiudi la modale
+        closeModal.onclick = function () {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto'; // Ripristina lo scroll
+        }
+
+        // Chiudi la modale cliccando fuori dall'immagine
+        modal.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto'; // Ripristina lo scroll
+            }
+        }
+
+        // Chiudi la modale con il tasto ESC
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' || event.key === 'Esc') {
+                if (modal.style.display === 'flex') {
+                    modal.style.display = "none";
+                    document.body.style.overflow = 'auto'; // Ripristina lo scroll
+                }
+                // Chiudi anche i gallery modal
+                document.querySelectorAll('.gallery-modal.active').forEach(m => {
+                    m.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        // **************************************
+        // LOGICA GALLERY MODAL - PAGINE DETTAGLIO
+        // **************************************
+
+        // Funzione per aprire un gallery modal
+        function openGalleryModal(modalId) {
+            const galleryModal = document.getElementById(modalId);
+            if (galleryModal) {
+                galleryModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Funzione per chiudere un gallery modal
+        function closeGalleryModal(modalId, event) {
+            if (event) {
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                event.preventDefault();
+            }
+            const galleryModal = document.getElementById(modalId);
+            if (galleryModal) {
+                galleryModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            return false; // Previene qualsiasi ulteriore azione
+        }
+
+        // Blocca propagazione su TUTTI gli elementi interni dei modal
+        document.querySelectorAll('.gallery-modal-header, .gallery-modal-content, .gallery-modal-grid, .gallery-modal-item, .gallery-modal-item img, .gallery-modal-item-overlay, .gallery-modal-close').forEach(el => {
+            el.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+
+        // Rendi cliccabili le card con has-details
+        document.querySelectorAll('.grid-item.has-details').forEach(card => {
+            card.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const modalId = this.dataset.modal;
+                if (modalId) {
+                    openGalleryModal(modalId);
+                }
+            });
+        });
+
+        // Chiudi gallery modal SOLO cliccando sullo sfondo scuro (non sugli elementi interni)
+        document.querySelectorAll('.gallery-modal').forEach(modalEl => {
+            modalEl.addEventListener('click', function (e) {
+                // Chiudi solo se il click è esattamente sul modal stesso (sfondo scuro)
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // **************************************
+        // OTTIMIZZAZIONE CARICAMENTO IMMAGINI
+        // **************************************
+
+        // Funzione per gestire il caricamento di un'immagine
+        function handleImageLoad(img) {
+            img.classList.add('loaded');
+            // Rimuovi l'animazione shimmer dal contenitore
+            const container = img.closest('.gallery-modal-item, .grid-item, .gallery-item');
+            if (container) {
+                container.style.animation = 'none';
+                container.style.background = 'transparent';
+            }
+        }
+
+        // Applica lazy loading avanzato con IntersectionObserver
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+
+                        // Se l'immagine ha già un src, gestisci il caricamento
+                        if (img.src && img.complete) {
+                            handleImageLoad(img);
+                        } else {
+                            img.onload = () => handleImageLoad(img);
+                            img.onerror = () => {
+                                img.classList.add('loaded'); // Mostra comunque per evitare spazi vuoti
+                                console.warn('Errore caricamento immagine:', img.src);
+                            };
+                        }
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '100px', // Inizia a caricare 100px prima che sia visibile
+                threshold: 0.01
+            });
+
+            // Osserva tutte le immagini
+            document.querySelectorAll('.gallery-modal-item img, .grid-item img, .gallery-item img, .two-column .column-image').forEach(img => {
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback per browser senza IntersectionObserver
+            document.querySelectorAll('.gallery-modal-item img, .grid-item img, .gallery-item img, .two-column .column-image').forEach(img => {
+                if (img.complete) {
+                    handleImageLoad(img);
+                } else {
+                    img.onload = () => handleImageLoad(img);
+                }
+            });
+        }
+
+        // Gestisci immagini già caricate dalla cache
+        document.querySelectorAll('.gallery-modal-item img, .grid-item img, .gallery-item img').forEach(img => {
+            if (img.complete && img.naturalHeight > 0) {
+                handleImageLoad(img);
+            }
+        });
+
+        // Precarica immagini dei modal quando si apre
+        const originalOpenModal = openGalleryModal;
+        openGalleryModal = function (modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.querySelectorAll('img').forEach(img => {
+                    if (!img.classList.contains('loaded') && img.src) {
+                        const preload = new Image();
+                        preload.onload = () => handleImageLoad(img);
+                        preload.src = img.src;
+                    }
+                });
+            }
+            return originalOpenModal(modalId);
+        };
+
+        // **************************************
+        // AUTO-HIDE CURSORE DOPO 2 SECONDI
+        // **************************************
+        let cursorTimeout;
+
+        function hideCursor() {
+            document.body.style.cursor = 'none';
+        }
+
+        function showCursor() {
+            document.body.style.cursor = 'auto';
+        }
+
+        function resetCursorTimer() {
+            showCursor();
+            clearTimeout(cursorTimeout);
+            cursorTimeout = setTimeout(hideCursor, 2000);
+        }
+
+        // Attiva dopo movimento mouse
+        document.addEventListener('mousemove', resetCursorTimer);
+        document.addEventListener('mousedown', resetCursorTimer);
+        document.addEventListener('keydown', resetCursorTimer);
+
+        // Avvia timer iniziale
+        resetCursorTimer();
+    </script>
+</body>
+
+</html>
